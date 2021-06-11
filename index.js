@@ -31,27 +31,27 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function createMessage(message) {
-  let container = document.createElement("div");
+  let div = document.createElement("div");
   for (let i = 0; i < 3; i++) {
-    let messageDate = document.createElement("span");
+    let messages = document.createElement("span");
     switch (i) {
       case 0:
-        messageDate.innerText = `[ ${[message.time]}] `;
+        messages.innerText = `[ ${[message.time]}] `;
         break;
       case 1:
-        messageDate.innerText = `<@${[message.author]}> `;
-        messageDate.style.color = message.color;
+        messages.innerText = `<@${[message.author]}> `;
+        messages.style.color = message.color;
         break;
       case 2:
-        messageDate.innerText = `${[message.messageContent]}`;
-        $(messageDate).emoticonize();
+        messages.innerText = `${[message.messageContent]}`;
+        $(messages).emoticonize();
         break;
       default:
         break;
     }
-    container.appendChild(messageDate);
+    div.appendChild(messages);
   }
-  document.querySelector(".chat").appendChild(container);
+  document.querySelector(".chat").appendChild(div);
 }
 
 function init() {
@@ -60,7 +60,6 @@ function init() {
     {response.json()
     console.log(response.status)})
     .then((data) => {
-      console.log(data);
       createMessage(data);
       init();
     });
